@@ -15,11 +15,14 @@ def send_text():
         print('Debes proporcionar un número de teléfono y un mensaje.')
         return
     
-
+    if '+' in in_num:
+        num = in_num
+    else:
+        num = mas + in_num
 
     # Envía la solicitud POST
     resp = requests.post('https://textbelt.com/text', {
-    'phone': in_num,
+    'phone': num,
     'message': in_men,
     'key': 'textbelt',
     })
@@ -41,5 +44,4 @@ def send_text():
         
     print(resp.json())
 
-# Llama a la función para enviar el mensaje
 send_text()
